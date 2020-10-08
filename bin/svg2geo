@@ -1,0 +1,53 @@
+#!/usr/bin/env node
+const { existsSync } = require('fs');
+const yargs = require('yargs');
+
+const argv = yargs
+  .help('h')
+  .usage('Usage: $0 <svgfile> [options]')
+  .example(
+    '$0 -f input.svg -o out.geojson -p -b -115.9 37.2 -115.7 37.3',
+    'Convert svg to geojson'
+  )
+  .option('file', {
+    alias: 'f',
+    describe: 'SVG target file',
+    normalize: true,
+    demandOption: true,
+    type: 'string'
+  })
+  .option('bbox', {
+    alias: 'b',
+    describe: 'BBox in minX minY maxX maxY order',
+    default: [-180, -90, 180, 90],
+    demandOption: true,
+    type: 'array',
+    nargs: 4,
+    array: ''
+  })
+  .option('output', {
+    alias: 'o',
+    describe: 'Output geojson file',
+    normalize: true,
+    default: 'output.geojson',
+    type: 'string'
+  })
+  .option('pretty', {
+    alias: 'p',
+    describe: 'Prettify output geojson',
+    type: 'boolean',
+    default: false
+  })
+  .alias('v', 'version')
+  .alias('h', 'help')
+  .demandOption(['bbox'])
+  .check(argv => {
+    if (!existsSync(argv.file)) {
+      throw new Error('Input svg file is not a readable file');
+    } else if (argv.bbox.some(isNaN)) {
+      throw new Error('BBox must contains numbers only');
+    }
+    return true;
+  }).argv;
+
+require('../src/cli')(argv);

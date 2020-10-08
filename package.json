@@ -1,15 +1,23 @@
 {
-  "name": "svg2geo",
-  "version": "1.0.0",
+  "name": "@w2ek/svg2geo",
+  "version": "0.0.1",
   "description": "Convert svg to geojson",
   "main": "index.js",
+  "bin": {
+    "@w2ek/svg2geo": "./bin/svg2geo",
+    "svg2geo": "./bin/svg2geo"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
+    "cli",
     "svg",
     "geojson"
   ],
   "author": "Vladimir Osokin <osokin.home@gmail.com>",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "yargs": "^16.0.3"
+  }
 }
