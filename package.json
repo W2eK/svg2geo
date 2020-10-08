@@ -1,0 +1,15 @@
+{
+  "name": "svg2geo",
+  "version": "1.0.0",
+  "description": "Convert svg to geojson",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "svg",
+    "geojson"
+  ],
+  "author": "Vladimir Osokin <osokin.home@gmail.com>",
+  "license": "ISC"
+}
