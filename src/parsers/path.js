@@ -15,10 +15,13 @@ function parseCurve(segment) {
 }
 
 function parseRings(segments, commands) {
+  function filter({ x, y }) {
+    return !isNaN(x) && !isNaN(y);
+  }
   function reducer(points, [command], i) {
     if (!points.length) points.push(segments[i].start);
     if (command === 'Z') {
-      rings.push(points);
+      rings.push(points.filter(filter));
       return [];
     } else if (parseRings.curves.includes(command)) {
       points.push(...parseCurve(segments[i]));
@@ -41,7 +44,10 @@ function parseRings(segments, commands) {
     });
     return { geometry: rings, type: 'polygon' };
   } else {
-    return { geometry: points, type: 'lineString' };
+    return {
+      geometry: points.filter(filter),
+      type: 'lineString'
+    };
   }
 }
 
