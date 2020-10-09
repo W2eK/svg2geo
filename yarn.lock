@@ -75,6 +75,14 @@
     "@turf/invariant" "^5.1.5"
     "@turf/meta" "^5.1.5"
 
+"@turf/truncate@^6.0.1":
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/@turf/truncate/-/truncate-6.0.1.tgz#b052255ad17a114e50d2f77d9339454918e750b7"
+  integrity sha512-0n6MauRHIhnlNPKnVa65YUPNh0AExDmBfvg7v5w1corBlYHZXLew3rS9IKw7o6VqHaMUQs5RT/b3/77RlTetJg==
+  dependencies:
+    "@turf/helpers" "6.x"
+    "@turf/meta" "6.x"
+
 "@types/q@^1.5.1":
   version "1.5.4"
   resolved "https://registry.yarnpkg.com/@types/q/-/q-1.5.4.tgz#15925414e0ad2cd765bfef58842f7e26a7accb24"
