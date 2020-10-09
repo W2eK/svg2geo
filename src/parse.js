@@ -16,7 +16,7 @@ const keep = [
 module.exports = function parseSvg(svg) {
   const nodes = flatSvg(svg.documentElement);
   return nodes
-    .filter(({ tag }) => keep.includes(tag))
+    .filter(({ tag, id }) => keep.includes(tag) && id !== 'bbox')
     .map(({ tag, id, ...attrs }) => {
       let feature;
       if (tag === 'circle') {
