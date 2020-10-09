@@ -13,16 +13,30 @@ function parseCircle(node) {
   };
 }
 
+function parseCurve(segment) {
+  const { length } = segment;
+  const n = Math.ceil(length / 3.5);
+  const step = length / n;
+  const points = new Array(n - 1)
+    .fill()
+    .map((d, i) => (i + 1) * step)
+    .map(distance => segment.getPointAtLength(distance));
+  points.push(segment.end);
+  return points;
+}
+
 function parseRings(segments, commands) {
   function reducer(points, [command], i) {
     if (!points.length) points.push(segments[i].start);
     if (command === 'Z') {
       rings.push(points);
       return [];
+    } else if (parseRings.curves.includes(command)) {
+      points.push(...parseCurve(segments[i]));
     } else {
       points.push(segments[i].end);
-      return points;
     }
+    return points;
   }
   const rings = [];
   const points = commands
@@ -41,6 +55,8 @@ function parseRings(segments, commands) {
     return { geometry: points, type: 'lineString' };
   }
 }
+
+parseRings.curves = ['C', 'S', 'Q', 'T', 'A'];
 
 function parsePath(d) {
   const commands = abs(parse(d));
