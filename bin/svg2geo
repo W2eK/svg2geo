@@ -32,6 +32,12 @@ const argv = yargs
     default: 'output.geojson',
     type: 'string'
   })
+  .option('step', {
+    alias: 's',
+    describe: 'Set interval in pixels between points in curves',
+    type: 'number',
+    default: 0.5
+  })
   .option('pretty', {
     alias: 'p',
     describe: 'Prettify output geojson',
