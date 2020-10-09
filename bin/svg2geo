@@ -19,7 +19,7 @@ const argv = yargs
   .option('bbox', {
     alias: 'b',
     describe: 'BBox in minX minY maxX maxY order',
-    default: [-180, -90, 180, 90],
+    default: [-180, -85.051129, 180, 85.051129],
     demandOption: true,
     type: 'array',
     nargs: 4,
