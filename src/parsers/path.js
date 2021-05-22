@@ -4,7 +4,7 @@ const { svgPathProperties } = require('svg-path-properties');
 
 function parseCurve(segment) {
   const { length } = segment;
-  const n = Math.ceil(length / process.env.CURVE_SEGMENTATION_STEP);
+  const n = Math.ceil(length / parseFloat(process.env.CURVE_SEGMENTATION_STEP));
   const step = length / n;
   const points = new Array(n - 1)
     .fill()

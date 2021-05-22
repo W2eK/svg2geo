@@ -9,21 +9,20 @@ const argv = yargs
     '$0 -f input.svg -o out.geojson -p -b -115.9 37.2 -115.7 37.3',
     'Convert svg to geojson'
   )
+  .option('bbox', {
+    alias: 'b',
+    describe: 'BBox in minX minY maxX maxY order',
+    default: [-180, -85.051129, 180, 85.051129],
+    nargs: 4,
+    demandOption: true,
+    type: 'array'
+  })
   .option('file', {
     alias: 'f',
     describe: 'SVG target file',
     normalize: true,
     demandOption: true,
     type: 'string'
-  })
-  .option('bbox', {
-    alias: 'b',
-    describe: 'BBox in minX minY maxX maxY order',
-    default: [-180, -85.051129, 180, 85.051129],
-    demandOption: true,
-    type: 'array',
-    nargs: 4,
-    array: ''
   })
   .option('output', {
     alias: 'o',
@@ -36,7 +35,7 @@ const argv = yargs
     alias: 's',
     describe: 'Set interval in pixels between points in curves',
     type: 'number',
-    default: 0.5
+    default: 1
   })
   .option('truncate', {
     alias: 't',
