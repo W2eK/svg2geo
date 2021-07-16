@@ -9,7 +9,7 @@
     "dev": "ts-node ./src/index.ts",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "tslint tsconfig.json",
-    "test": "jest"
+    "test": "jest --verbose --watchAll --coverage"
   },
   "homepage": "https://github.com/W2eK/svg2geo",
   "repository": {
@@ -27,22 +27,23 @@
     "lib/**/*"
   ],
   "dependencies": {
-    "@turf/helpers": "^6.1.4",
-    "@turf/projection": "^6.0.1",
-    "@turf/rewind": "^5.1.5",
+    "@turf/helpers": "^6.5.0",
+    "@turf/projection": "^6.5.0",
+    "@turf/rewind": "^6.5.0",
     "@turf/truncate": "^6.5.0",
     "abs-svg-path": "^0.1.1",
     "parse-svg-path": "^0.1.2",
     "svg-path-properties": "^1.0.9",
     "svg-points": "^6.0.1",
-    "svgo": "^1.3.2",
+    "svgo": "^2.3.1",
     "xmldom": "^0.3.0",
     "yargs": "^17.0.1"
   },
   "devDependencies": {
+    "@types/geojson": "^7946.0.8",
     "@types/jest": "^26.0.24",
     "@types/node": "^16.3.1",
-    "@types/turf": "^3.5.32",
+    "@types/svgo": "^2.3.1",
     "@types/xmldom": "^0.1.31",
     "@types/yargs": "^17.0.2",
     "jest": "^27.0.6",
