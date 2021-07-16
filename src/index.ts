@@ -1,5 +1,6 @@
 import { DOMParser } from 'xmldom';
 import cleanSvg from './svgo';
+import getBounds from './bounds';
 
 type Input = string | Document;
 type Options = {
@@ -23,9 +24,14 @@ function converSvgToGeojson(input: Input, options?: Options) {
   } = options || {};
   bbox[1] = Math.max(bbox[1], -85.051129);
   bbox[3] = Math.min(bbox[3], 85.051129);
+
+  /* 2. Parse and clean up SVG */
   if (typeof input !== 'string') input = input.toString();
   if (clean) input = cleanSvg(input);
   const svg = new DOMParser().parseFromString(input);
+
+  /* 3. Getting bounds of geometry */
+  const bounds = getBounds(svg);
 }
 
 export default converSvgToGeojson;
