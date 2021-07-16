@@ -1,6 +1,7 @@
 import { DOMParser } from 'xmldom';
 import cleanSvg from './svgo';
 import getBounds from './bounds';
+import getProjection from './projection';
 
 type Input = string | Document;
 type Options = {
@@ -18,7 +19,7 @@ function converSvgToGeojson(input: Input, options?: Options) {
   const {
     step = 1,
     truncate = false,
-    clean = true,
+    clean = true,    
     bbox = [-180, -85.051129, 180, 85.051129],
     attributes = false
   } = options || {};
@@ -32,6 +33,9 @@ function converSvgToGeojson(input: Input, options?: Options) {
 
   /* 3. Getting bounds of geometry */
   const bounds = getBounds(svg);
+
+  /* 4. use provided bbox and bounds from svg to make correct projection */
+  const projection = getProjection(bounds, bbox);
 }
 
 export default converSvgToGeojson;
