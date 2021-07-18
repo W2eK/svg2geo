@@ -6,7 +6,7 @@ import parseSvg from './parser';
 import getFeatures from './features';
 
 type Input = string | Document;
-type Options = {
+export type Options = {
   bbox?: GeoJSON.BBox;
   step?: number;
   clean?: boolean;
@@ -22,9 +22,9 @@ function converSvgToGeojson(input: Input, options?: Options) {
   const {
     clean = true,
     bbox = [-180, -85.051129, 180, 85.051129],
+    truncate = false,
     /* TODO: */
     step = 1,
-    truncate = false,
     attributes = false,
     flatten = false
   } = options || {};

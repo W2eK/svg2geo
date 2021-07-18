@@ -3,13 +3,20 @@
   "version": "1.0.0",
   "description": "Convert SVG to GeoJSON",
   "main": "./lib/index.js",
-  "bin": "./lib/index.js",
+  "bin": {
+    "svg2geo": "./lib/cli.js"
+  },
   "scripts": {
-    "build": "rm -rf lib && tsc",
+    "build": "rm -rf lib && tsc && chmod u+x ./lib/cli.js",
     "dev": "ts-node ./src/index.ts",
     "format": "prettier --write \"src/**/*.ts\"",
-    "lint": "tslint tsconfig.json",
-    "test": "jest --verbose --watchAll --coverage"
+    "lint": "tslint tslint.json",
+    "test": "jest --verbose --watchAll --coverage",
+    "prepare": "yarn build",
+    "prepublishOnly": "yarn test && yarn lint",
+    "preversion": "yarn lint",
+    "version": "yarn format && git add -A src",
+    "postversion": "git push && git push --tags"
   },
   "homepage": "https://github.com/W2eK/svg2geo",
   "repository": {
@@ -46,6 +53,9 @@
     "@types/svgo": "^2.3.1",
     "@types/xmldom": "^0.1.31",
     "@types/yargs": "^17.0.2",
+    "@typescript-eslint/eslint-plugin": "^4.28.3",
+    "@typescript-eslint/parser": "^4.28.3",
+    "eslint": "^7.31.0",
     "jest": "^27.0.6",
     "prettier": "^2.3.2",
     "ts-jest": "^27.0.3",
