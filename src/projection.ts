@@ -1,5 +1,8 @@
 import { toMercator, toWgs84 } from '@turf/projection';
 import { Bounds } from './bounds';
+import { Point } from 'svg-path-properties/dist/types/types';
+
+export type Projection = (point: Point) => GeoJSON.Position;
 
 function getScale(from: [number, number], to: [number, number]) {
   const domain = {
@@ -25,8 +28,9 @@ function getProjection(bounds: Bounds, bbox: GeoJSON.BBox) {
     [y + height, y],
     [toMercator([0, minY])[1], toMercator([0, maxY])[1]]
   );
-  return ({ x, y }: { x: number; y: number }) =>
+  const projection: Projection = ({ x, y }) =>
     toWgs84([getLongitude(x), getLatitude(y)]);
+  return projection;
 }
 
 export default getProjection;

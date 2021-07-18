@@ -2,7 +2,8 @@ import { DOMParser } from 'xmldom';
 import cleanSvg from './svgo';
 import getBounds from './bounds';
 import getProjection from './projection';
-import parseSvg from './parse'
+import parseSvg from './parse';
+import getFeatures from './features';
 
 type Input = string | Document;
 type Options = {
@@ -13,16 +14,19 @@ type Options = {
   output?: string;
   pretty?: boolean;
   attributes?: boolean;
+  flatten?: boolean;
 };
 
 function converSvgToGeojson(input: Input, options?: Options) {
   /* 1. Normalizing arguments */
   const {
-    step = 1,
-    truncate = false,
     clean = true,
     bbox = [-180, -85.051129, 180, 85.051129],
-    attributes = false
+    /* TODO: */
+    step = 1,
+    truncate = false,
+    attributes = false,
+    flatten = false
   } = options || {};
   bbox[1] = Math.max(bbox[1], -85.051129);
   bbox[3] = Math.min(bbox[3], 85.051129);
@@ -39,6 +43,9 @@ function converSvgToGeojson(input: Input, options?: Options) {
   const projection = getProjection(bounds, bbox);
   /* 5. .Extract suitable svg elements and return them as JSON */
   const shapes = parseSvg(svg);
+  /* 6. Convert them to GeoJSON Feature Collection */
+  const geojson = getFeatures(shapes, projection, truncate);
+  return geojson;
 }
 
 export default converSvgToGeojson;

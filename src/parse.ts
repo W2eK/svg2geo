@@ -15,7 +15,7 @@ const keep = [
 
 export type SVGTags = typeof keep[number];
 
-type Shape = { id?: string } & (Circle | Polygon | LineString);
+export type Shape = { id?: string } & (Circle | Polygon | LineString);
 
 function parseSvg(svg: Document): Shape[] {
   /* FIXME: Fix types   */
