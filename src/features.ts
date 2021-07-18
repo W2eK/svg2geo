@@ -9,7 +9,7 @@ import {
 } from '@turf/helpers';
 import rewind from '@turf/rewind';
 import truncator from '@turf/truncate';
-import { Shape } from './parse';
+import { Shape } from './parser';
 import { Projection } from './projection';
 import { Point } from 'svg-path-properties/dist/types/types';
 import callRecursive from './utils/recursive';

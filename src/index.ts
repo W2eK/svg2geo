@@ -2,7 +2,7 @@ import { DOMParser } from 'xmldom';
 import cleanSvg from './svgo';
 import getBounds from './bounds';
 import getProjection from './projection';
-import parseSvg from './parse';
+import parseSvg from './parser';
 import getFeatures from './features';
 
 type Input = string | Document;

@@ -1,7 +1,7 @@
-import getAttributes from './parsers/attributes';
-import parseCircle, { Circle } from './parsers/circle';
-import parsePath, { Polygon, LineString } from './parsers/path';
-import parseShape from './parsers/shape';
+import getAttributes from './attributes';
+import parseCircle, { Circle } from './circle';
+import parsePath, { Polygon, LineString } from './path';
+import parseShape from './shape';
 
 const keep = [
   'circle',

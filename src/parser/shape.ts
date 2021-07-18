@@ -1,5 +1,5 @@
 import { toPath } from 'svg-points';
-import { SVGTags } from '../parse';
+import { SVGTags } from './parser';
 
 type Attributes = {
   [key: string]: number | string;

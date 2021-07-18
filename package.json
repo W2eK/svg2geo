@@ -7,7 +7,7 @@
   "scripts": {
     "build": "rm -rf lib && tsc",
     "dev": "ts-node ./src/index.ts",
-    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+    "format": "prettier --write \"src/**/*.ts\"",
     "lint": "tslint tsconfig.json",
     "test": "jest --verbose --watchAll --coverage"
   },
