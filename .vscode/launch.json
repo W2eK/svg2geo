@@ -6,10 +6,18 @@
   "configurations": [
     {
       "type": "node",
+      "name": "Run main test",
+      "request": "launch",
+      "program": "${workspaceFolder}/node_modules/.bin/jest",
+      "args": ["./tests/index.test.ts", "--verbose"]
+    },
+    {
+      "type": "node",
       "name": "vscode-jest-tests",
       "request": "launch",
       "program": "${workspaceFolder}/node_modules/.bin/jest",
       "args": [
+        "./tests/index.test.ts",
         "--runInBand",
         "--no-cache",
         "--watchAll=true"
@@ -22,7 +30,5 @@
         "program": "${workspaceFolder}/node_modules/jest/bin/jest"
       }
     }
-    
-    
   ]
 }

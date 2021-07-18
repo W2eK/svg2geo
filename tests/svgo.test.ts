@@ -23,7 +23,7 @@ const svg =
 let result: string;
 beforeAll(() => {
   result = cleanSvg(svg);
-  console.log(result);
+  // console.log(result);
 });
 
 describe('Cleaning SVG', () => {
