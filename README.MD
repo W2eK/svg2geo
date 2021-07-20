@@ -1,3 +1,3 @@
 # SVG2GEO
 
-Converts SVG into GeoJSON Object
+Convert SVG into GeoJSON Object
